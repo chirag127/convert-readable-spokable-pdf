@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Convert to Readable Speakable PDF</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <span class="logo-icon">📖</span>
+                    <span class="logo-text">PDF2Speech</span>
+                </div>
+                <ul class="nav-menu">
+                    <li>
+                        <a href="#" class="nav-link" data-page="home">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" data-page="settings"
+                            >Settings</a
+                        >
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" data-page="about">About</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" data-page="contact"
+                            >Contact</a
+                        >
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" data-page="privacy"
+                            >Privacy</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Container -->
+        <div class="container">
+            <!-- HOME PAGE -->
+            <div id="home" class="page active">
+                <section class="hero">
+                    <h1>Convert Your PDF to TTS-Optimized Text</h1>
+                    <p class="subtitle">
+                        Transform technical PDFs into beautifully formatted,
+                        speaker-friendly content
+                    </p>
+                </section>
+
+                <section class="main-content">
+                    <div class="upload-section">
+                        <div class="upload-box">
+                            <div class="upload-icon">📄</div>
+                            <h2>Upload Your PDF</h2>
+                            <p>Select a text-based PDF to get started</p>
+                            <input
+                                type="file"
+                                id="pdfUpload"
+                                accept=".pdf"
+                                class="file-input"
+                            />
+                            <button
+                                class="btn btn-primary btn-lg"
+                                id="uploadBtn"
+                            >
+                                Choose File
+                            </button>
+                            <p class="upload-hint">
+                                or drag and drop your PDF here
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        id="processingSection"
+                        class="processing-section"
+                        style="display: none"
+                    >
+                        <div class="progress-container">
+                            <h3>Processing Your PDF</h3>
+                            <div class="progress-bar">
+                                <div
+                                    class="progress-fill"
+                                    id="progressFill"
+                                ></div>
+                            </div>
+                            <p class="progress-text" id="progressText">
+                                Initializing...
+                            </p>
+                            <div class="step-indicator">
+                                <div class="step active" id="step1">
+                                    <span class="step-number">1</span>
+                                    <span class="step-label">Extract</span>
+                                </div>
+                                <div class="step" id="step2">
+                                    <span class="step-number">2</span>
+                                    <span class="step-label">Process</span>
+                                </div>
+                                <div class="step" id="step3">
+                                    <span class="step-number">3</span>
+                                    <span class="step-label">Generate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        id="resultsSection"
+                        class="results-section"
+                        style="display: none"
+                    >
+                        <div class="results-container">
+                            <h3>✓ Processing Complete!</h3>
+                            <div class="results-info">
+                                <p id="resultStats"></p>
+                                <div class="results-preview">
+                                    <h4>Preview of Optimized Content</h4>
+                                    <div
+                                        id="previewContent"
+                                        class="preview-content"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="results-actions">
+                                <button
+                                    class="btn btn-success btn-lg"
+                                    id="downloadBtn"
+                                >
+                                    <span class="btn-icon">⬇️</span> Download
+                                    PDF
+                                </button>
+                                <button
+                                    class="btn btn-secondary btn-lg"
+                                    id="resetBtn"
+                                >
+                                    <span class="btn-icon">🔄</span> Process
+                                    Another
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        id="errorSection"
+                        class="error-section"
+                        style="display: none"
+                    >
+                        <div class="error-container">
+                            <div class="error-icon">⚠️</div>
+                            <h3>Error Processing PDF</h3>
+                            <p id="errorMessage"></p>
+                            <button
+                                class="btn btn-secondary"
+                                id="errorRetryBtn"
+                            >
+                                Try Again
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="features">
+                    <h2>Why Use PDF2Speech?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Smart Processing</h3>
+                            <p>
+                                AI-powered transformation of technical content
+                                into natural language descriptions
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔗</div>
+                            <h3>Seamless Integration</h3>
+                            <p>
+                                Works perfectly with Moon+ Reader Pro and other
+                                TTS applications
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Fast Processing</h3>
+                            <p>
+                                Intelligent chunking handles large documents
+                                efficiently
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🛡️</div>
+                            <h3>Privacy First</h3>
+                            <p>
+                                Your API key is stored locally and never shared
+                                with our servers
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎨</div>
+                            <h3>Customizable</h3>
+                            <p>
+                                Fine-tune the output style with custom system
+                                prompts
+                            </p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <h3>Mobile Ready</h3>
+                            <p>Works on any device with a modern web browser</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="quick-start">
+                    <h2>Quick Start Guide</h2>
+                    <ol class="steps-list">
+                        <li>
+                            <strong>Configure Settings:</strong> Go to Settings
+                            and enter your Google Gemini API key from
+                            <a
+                                href="https://aistudio.google.com/app/apikey"
+                                target="_blank"
+                                >Google AI Studio</a
+                            >
+                        </li>
+                        <li>
+                            <strong>Select Your PDF:</strong> Click "Choose
+                            File" and select a text-based PDF document
+                        </li>
+                        <li>
+                            <strong>Wait for Processing:</strong> Our system
+                            will extract, optimize, and transform your content
+                        </li>
+                        <li>
+                            <strong>Download & Enjoy:</strong> Download the
+                            optimized PDF and use it with your favorite TTS
+                            reader
+                        </li>
+                    </ol>
+                </section>
+            </div>
+
+            <!-- SETTINGS PAGE -->
+            <div id="settings" class="page">
+                <section class="settings-header">
+                    <h1>Settings</h1>
+                    <p>
+                        Configure your API credentials and processing
+                        preferences
+                    </p>
+                </section>
+
+                <section class="settings-content">
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h2>🔑 API Configuration</h2>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="form-group">
+                                <label for="apiKey" class="form-label">
+                                    Google Gemini API Key
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <input
+                                        type="password"
+                                        id="apiKey"
+                                        class="form-input"
+                                        placeholder="Enter your Gemini API key"
+                                    />
+                                    <button
+                                        class="btn-icon-toggle"
+                                        id="toggleApiKey"
+                                        title="Show/Hide"
+                                    >
+                                        👁️
+                                    </button>
+                                </div>
+                                <small class="form-hint">
+                                    Get your free API key from
+                                    <a
+                                        href="https://aistudio.google.com/app/apikey"
+                                        target="_blank"
+                                        >Google AI Studio</a
+                                    >. Free tier includes 15 requests per
+                                    minute.
+                                </small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="modelSelect" class="form-label">
+                                    Select Model
+                                </label>
+                                <select id="modelSelect" class="form-input">
+                                    <option value="gemini-2.5-flash">
+                                        Gemini 2.5 Flash (Recommended - Fast &
+                                        Cost-effective)
+                                    </option>
+                                    <option value="gemini-2.5-pro">
+                                        Gemini 2.5 Pro (More Capable - Slower)
+                                    </option>
+                                    <option value="gemini-2.0-flash">
+                                        Gemini 2.0 Flash (Stable - Good Balance)
+                                    </option>
+                                    <option value="gemini-2.5-flash-lite">
+                                        Gemini 2.5 Flash Lite (Lightweight)
+                                    </option>
+                                </select>
+                                <small class="form-hint">
+                                    Flash models are faster and cheaper. Pro
+                                    models are more capable.
+                                </small>
+                            </div>
+
+                            <div class="form-actions">
+                                <button class="btn btn-primary" id="testApiBtn">
+                                    Test Connection
+                                </button>
+                                <button
+                                    class="btn btn-secondary"
+                                    id="clearApiBtn"
+                                >
+                                    Clear API Key
+                                </button>
+                            </div>
+                            <div
+                                id="testResultMessage"
+                                class="test-result"
+                                style="display: none"
+                            ></div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h2>🎯 Processing Configuration</h2>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="form-group">
+                                <label for="chunkSize" class="form-label">
+                                    Chunk Size (tokens)
+                                </label>
+                                <input
+                                    type="number"
+                                    id="chunkSize"
+                                    class="form-input"
+                                    min="500"
+                                    max="20000"
+                                    step="500"
+                                    value="4000"
+                                />
+                                <small class="form-hint">
+                                    Smaller chunks = safer but slower. Larger
+                                    chunks = faster but more memory.
+                                    Recommended: 4000 tokens
+                                </small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="temperature" class="form-label">
+                                    Temperature (Creativity)
+                                </label>
+                                <div class="slider-container">
+                                    <input
+                                        type="range"
+                                        id="temperature"
+                                        class="form-slider"
+                                        min="0"
+                                        max="2"
+                                        step="0.1"
+                                        value="0.7"
+                                    />
+                                    <span
+                                        class="slider-value"
+                                        id="temperatureValue"
+                                        >0.7</span
+                                    >
+                                </div>
+                                <small class="form-hint">
+                                    0 = Precise, 1 = Balanced, 2 = Creative.
+                                    Lower is better for TTS.
+                                </small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="maxOutputTokens" class="form-label">
+                                    Max Output Tokens
+                                </label>
+                                <input
+                                    type="number"
+                                    id="maxOutputTokens"
+                                    class="form-input"
+                                    min="100"
+                                    max="8000"
+                                    step="100"
+                                    value="2000"
+                                />
+                                <small class="form-hint">
+                                    Maximum length of the transformed content
+                                    per chunk
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h2>📝 System Prompt Customization</h2>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="form-group">
+                                <label for="systemPrompt" class="form-label">
+                                    System Prompt
+                                </label>
+                                <textarea
+                                    id="systemPrompt"
+                                    class="form-textarea"
+                                    rows="8"
+                                ></textarea>
+                                <div class="prompt-actions">
+                                    <button
+                                        class="btn btn-secondary btn-sm"
+                                        id="resetPromptBtn"
+                                    >
+                                        Reset to Default
+                                    </button>
+                                    <button
+                                        class="btn btn-secondary btn-sm"
+                                        id="copyPromptBtn"
+                                    >
+                                        Copy
+                                    </button>
+                                </div>
+                                <small class="form-hint">
+                                    Customize how Gemini transforms your PDF
+                                    content. This prompt controls the entire
+                                    output.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-card-header">
+                            <h2>💾 Data Management</h2>
+                        </div>
+                        <div class="settings-card-body">
+                            <div class="data-management">
+                                <p>
+                                    Your settings and API key are stored locally
+                                    in your browser's localStorage.
+                                </p>
+                                <button
+                                    class="btn btn-secondary"
+                                    id="exportSettingsBtn"
+                                >
+                                    Export Settings
+                                </button>
+                                <button
+                                    class="btn btn-secondary"
+                                    id="clearAllBtn"
+                                >
+                                    Clear All Data
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-footer">
+                        <button
+                            class="btn btn-success btn-lg"
+                            id="saveSettingsBtn"
+                        >
+                            Save All Settings
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- ABOUT PAGE -->
+            <div id="about" class="page">
+                <section class="page-header">
+                    <h1>About PDF2Speech</h1>
+                </section>
+
+                <section class="page-content">
+                    <div class="content-card">
+                        <h2>What is PDF2Speech?</h2>
+                        <p>
+                            PDF2Speech is an innovative tool designed to
+                            transform technical and academic PDFs into content
+                            that is perfectly optimized for Text-to-Speech (TTS)
+                            applications. Whether you're reading a programming
+                            book, technical manual, or academic paper, our
+                            AI-powered processing makes the audio experience
+                            smooth and natural.
+                        </p>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>Key Features</h2>
+                        <ul class="feature-list">
+                            <li>
+                                <strong>Code-to-Description:</strong> Converts
+                                code examples into natural language descriptions
+                            </li>
+                            <li>
+                                <strong>Image Captioning:</strong> Transforms
+                                figure captions and image references into
+                                descriptive text
+                            </li>
+                            <li>
+                                <strong>Smart Chunking:</strong> Intelligently
+                                splits large documents to respect API token
+                                limits
+                            </li>
+                            <li>
+                                <strong>Batch Processing:</strong> Processes
+                                content sequentially and reassembles
+                                automatically
+                            </li>
+                            <li>
+                                <strong>Privacy-First:</strong> All processing
+                                happens client-side with your own API key
+                            </li>
+                            <li>
+                                <strong>Customizable:</strong> Fine-tune the
+                                output with custom system prompts
+                            </li>
+                            <li>
+                                <strong>Mobile-Ready:</strong> Works on any
+                                device with a modern browser
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>How It Works</h2>
+                        <ol class="workflow-list">
+                            <li>
+                                <strong>PDF Extraction:</strong> Your PDF is
+                                analyzed and text content is extracted
+                            </li>
+                            <li>
+                                <strong>Content Chunking:</strong> Large
+                                documents are split into manageable chunks that
+                                respect API token limits
+                            </li>
+                            <li>
+                                <strong>AI Processing:</strong> Each chunk is
+                                sent to Google's Gemini API with your custom
+                                instructions
+                            </li>
+                            <li>
+                                <strong>Reassembly:</strong> Processed chunks
+                                are intelligently reassembled with proper
+                                formatting
+                            </li>
+                            <li>
+                                <strong>PDF Generation:</strong> The optimized
+                                content is converted back to PDF format
+                            </li>
+                            <li>
+                                <strong>Download:</strong> You receive a
+                                beautifully formatted, TTS-ready PDF
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>Technology Stack</h2>
+                        <ul class="tech-list">
+                            <li>
+                                <strong>Frontend:</strong> Vanilla HTML, CSS,
+                                and JavaScript (no frameworks)
+                            </li>
+                            <li>
+                                <strong>PDF Processing:</strong> PDF.js library
+                                for text extraction
+                            </li>
+                            <li>
+                                <strong>AI Engine:</strong> Google Gemini 2.5
+                                Flash REST API
+                            </li>
+                            <li>
+                                <strong>PDF Generation:</strong> jsPDF library
+                            </li>
+                            <li>
+                                <strong>Storage:</strong> Browser localStorage
+                                for settings
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>Privacy & Security</h2>
+                        <p>
+                            Your privacy is our top priority. PDF2Speech is
+                            designed with privacy-first principles:
+                        </p>
+                        <ul class="security-list">
+                            <li>
+                                🔒 Your API key is stored only in your browser's
+                                localStorage
+                            </li>
+                            <li>🔒 No data is sent to our servers</li>
+                            <li>
+                                🔒 PDFs are processed entirely in your browser
+                                before being sent to Gemini
+                            </li>
+                            <li>
+                                🔒 You maintain complete control over your
+                                documents and API usage
+                            </li>
+                            <li>🔒 No tracking or analytics</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>Supported Models</h2>
+                        <ul class="models-list">
+                            <li>
+                                <strong>Gemini 2.5 Flash:</strong> Recommended
+                                for most use cases. Fast, cost-effective, and
+                                capable.
+                            </li>
+                            <li>
+                                <strong>Gemini 2.5 Pro:</strong> More capable
+                                but slower. Best for complex transformations.
+                            </li>
+                            <li>
+                                <strong>Gemini 2.0 Flash:</strong> Stable and
+                                reliable. Good balance of speed and capability.
+                            </li>
+                            <li>
+                                <strong>Gemini 2.5 Flash Lite:</strong>
+                                Lightweight model for simple transformations.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>Best Practices</h2>
+                        <ul class="practices-list">
+                            <li>
+                                Start with Gemini 2.5 Flash for the best balance
+                                of speed and cost
+                            </li>
+                            <li>
+                                Use lower temperature (0.5-0.8) for more
+                                consistent TTS output
+                            </li>
+                            <li>
+                                Test with a small PDF section first to preview
+                                the output style
+                            </li>
+                            <li>
+                                Adjust the system prompt to match your specific
+                                document type
+                            </li>
+                            <li>
+                                Keep chunk sizes between 3000-5000 tokens for
+                                optimal results
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <!-- CONTACT PAGE -->
+            <div id="contact" class="page">
+                <section class="page-header">
+                    <h1>Contact Us</h1>
+                    <p>
+                        Have questions or feedback? We'd love to hear from you!
+                    </p>
+                </section>
+
+                <section class="page-content">
+                    <div class="contact-container">
+                        <div class="contact-info">
+                            <div class="info-card">
+                                <h3>📧 Email</h3>
+                                <p>
+                                    <a href="mailto:support@pdf2speech.dev"
+                                        >support@pdf2speech.dev</a
+                                    >
+                                </p>
+                                <p class="info-desc">
+                                    Send us your questions, bug reports, or
+                                    feature requests
+                                </p>
+                            </div>
+
+                            <div class="info-card">
+                                <h3>🐙 GitHub</h3>
+                                <p>
+                                    <a
+                                        href="https://github.com/chirag127/convert-readable-spokable-pdf"
+                                        target="_blank"
+                                    >
+                                        convert-readable-spokable-pdf
+                                    </a>
+                                </p>
+                                <p class="info-desc">
+                                    View the source code and contribute to the
+                                    project
+                                </p>
+                            </div>
+
+                            <div class="info-card">
+                                <h3>🐛 Report a Bug</h3>
+                                <p>
+                                    <a
+                                        href="https://github.com/chirag127/convert-readable-spokable-pdf/issues"
+                                        target="_blank"
+                                    >
+                                        GitHub Issues
+                                    </a>
+                                </p>
+                                <p class="info-desc">
+                                    Found a problem? Let us know on our issue
+                                    tracker
+                                </p>
+                            </div>
+
+                            <div class="info-card">
+                                <h3>💡 Feature Requests</h3>
+                                <p>
+                                    <a
+                                        href="https://github.com/chirag127/convert-readable-spokable-pdf/discussions"
+                                        target="_blank"
+                                    >
+                                        GitHub Discussions
+                                    </a>
+                                </p>
+                                <p class="info-desc">
+                                    Share your ideas for new features and
+                                    improvements
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-form">
+                            <h2>Send us a Message</h2>
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <label for="contactName" class="form-label"
+                                        >Name</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="contactName"
+                                        class="form-input"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail" class="form-label"
+                                        >Email</label
+                                    >
+                                    <input
+                                        type="email"
+                                        id="contactEmail"
+                                        class="form-input"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label
+                                        for="contactSubject"
+                                        class="form-label"
+                                        >Subject</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="contactSubject"
+                                        class="form-input"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label
+                                        for="contactMessage"
+                                        class="form-label"
+                                        >Message</label
+                                    >
+                                    <textarea
+                                        id="contactMessage"
+                                        class="form-textarea"
+                                        rows="6"
+                                        required
+                                    ></textarea>
+                                </div>
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary btn-lg"
+                                >
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- PRIVACY PAGE -->
+            <div id="privacy" class="page">
+                <section class="page-header">
+                    <h1>Privacy Policy</h1>
+                    <p>Last Updated: November 2025</p>
+                </section>
+
+                <section class="page-content">
+                    <div class="content-card">
+                        <h2>1. Introduction</h2>
+                        <p>
+                            PDF2Speech ("we", "our", or "us") is committed to
+                            protecting your privacy. This Privacy Policy
+                            explains how our application handles your data and
+                            your privacy.
+                        </p>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>2. Data We Collect</h2>
+                        <p>
+                            PDF2Speech is a client-side application that
+                            operates entirely in your browser. We collect:
+                        </p>
+                        <ul class="privacy-list">
+                            <li>
+                                <strong>API Key (stored locally only):</strong>
+                                Your Google Gemini API key is stored only in
+                                your browser's localStorage and never
+                                transmitted to our servers
+                            </li>
+                            <li>
+                                <strong>Settings:</strong> Your processing
+                                preferences (chunk size, temperature, model
+                                selection) are stored locally in your browser
+                            </li>
+                            <li>
+                                <strong>PDFs:</strong> Your PDF files remain on
+                                your device and are not uploaded to our servers
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>3. Data Processing</h2>
+                        <p>When you use PDF2Speech:</p>
+                        <ul class="privacy-list">
+                            <li>PDF text is extracted in your browser</li>
+                            <li>
+                                Content is sent directly to Google's Gemini API
+                                based on your configuration
+                            </li>
+                            <li>
+                                We do not store, process, or have access to your
+                                PDFs or API responses
+                            </li>
+                            <li>
+                                All processing occurs between your browser and
+                                Google's servers
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>4. Third-Party Services</h2>
+                        <p>
+                            PDF2Speech uses Google Gemini API to process
+                            content. When you use our service, your content is
+                            sent to Google's servers according to their terms of
+                            service. Please review
+                            <a
+                                href="https://ai.google.dev/terms"
+                                target="_blank"
+                                >Google's terms</a
+                            >
+                            for more information about how they handle your
+                            data.
+                        </p>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>5. Cookies and Local Storage</h2>
+                        <p>
+                            PDF2Speech uses browser localStorage to save your
+                            settings and API key locally on your device. We do
+                            not use cookies for tracking or analytics.
+                        </p>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>6. Security</h2>
+                        <p>
+                            Your API key is stored locally in your browser's
+                            localStorage. We recommend:
+                        </p>
+                        <ul class="security-list">
+                            <li>Using HTTPS when accessing this application</li>
+                            <li>
+                                Keeping your browser and operating system up to
+                                date
+                            </li>
+                            <li>Never sharing your API key with others</li>
+                            <li>
+                                Clearing your browser data if using a shared
+                                computer
+                            </li>
+                            <li>Regularly rotating your Gemini API key</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>7. User Rights</h2>
+                        <p>
+                            Since we don't collect or store your data on our
+                            servers, you have complete control:
+                        </p>
+                        <ul class="privacy-list">
+                            <li>
+                                Access: Your data is visible in your browser's
+                                localStorage
+                            </li>
+                            <li>
+                                Deletion: Click "Clear All Data" in Settings to
+                                delete everything
+                            </li>
+                            <li>
+                                Portability: Export your settings at any time
+                            </li>
+                            <li>
+                                No tracking: We don't track your usage or
+                                activity
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>8. Changes to This Policy</h2>
+                        <p>
+                            We may update this Privacy Policy from time to time.
+                            The "Last Updated" date at the top indicates when
+                            the policy was last revised.
+                        </p>
+                    </div>
+
+                    <div class="content-card">
+                        <h2>9. Contact Us</h2>
+                        <p>
+                            If you have any questions about this Privacy Policy,
+                            please contact us at
+                            <a href="mailto:support@pdf2speech.dev"
+                                >support@pdf2speech.dev</a
+                            >
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast"></div>
+
+        <!-- Modal for API Key Input (on first load) -->
+        <div id="apiKeyModal" class="modal" style="display: none">
+            <div class="modal-content">
+                <h2>Welcome to PDF2Speech!</h2>
+                <p>
+                    To get started, please configure your Google Gemini API key
+                    in the Settings page.
+                </p>
+                <button
+                    class="btn btn-primary"
+                    onclick="navigateTo('settings')"
+                >
+                    Go to Settings
+                </button>
+                <button class="btn btn-secondary" onclick="closeApiKeyModal()">
+                    Close
+                </button>
+            </div>
+        </div>
+
+        <!-- External Libraries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+        <!-- Application Scripts -->
+        <script src="js/settings.js"></script>
+        <script src="js/api.js"></script>
+        <script src="js/pdf-processor.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
